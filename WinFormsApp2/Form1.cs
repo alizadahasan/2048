@@ -147,7 +147,7 @@ namespace WinFormsApp2
             {
                 if (CheckForTargetTile())
                 {
-                    GameOverForm gameOverForm = new GameOverForm();
+                    GameOverForm gameOverForm = new GameOverForm(this);
                     gameOverForm.Show();
                     this.Hide();
                     return base.ProcessCmdKey(ref msg, keyData); // Prevent generating a new tile and further moves
@@ -157,8 +157,9 @@ namespace WinFormsApp2
                 if (IsGameOver())
                 {
                     // Show the GameOverForm
-                    GameOverForm gameOverForm = new GameOverForm();
+                    GameOverForm gameOverForm = new GameOverForm(this);
                     gameOverForm.Show();
+                    this.Hide();
                 }
             }
 
