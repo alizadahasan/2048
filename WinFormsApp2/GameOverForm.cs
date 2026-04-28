@@ -1,12 +1,16 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
 namespace WinFormsApp2
 {
     public partial class GameOverForm : Form
     {
-        public GameOverForm()
+        private Form1 gameForm;
+
+        // Constructor that accepts the game form reference
+        public GameOverForm(Form1 parentForm = null)
         {
+            this.gameForm = parentForm;
             InitializeComponent();
         }
 
@@ -24,9 +28,12 @@ namespace WinFormsApp2
             WelcomeForm welcomeForm = new WelcomeForm();
             welcomeForm.Show();
 
-            // Close the current form and the game form
+            // Close the current form and the game form safely
             this.Close();
-            Application.OpenForms["Form1"].Close();
+            if (gameForm != null && !gameForm.IsDisposed)
+            {
+                gameForm.Close();
+            }
         }
     }
 }
